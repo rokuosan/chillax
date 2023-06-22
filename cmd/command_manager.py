@@ -7,11 +7,6 @@ from .ping import ping
 bot = commands.Bot(command_prefix='$', intents=intents)
 
 
-@bot.command(name='ping')
-async def command_ping(ctx):
-    await ping(ctx)
-
-
 @bot.command(name='join', help='Tells the bot to join the voice channel')
 async def join(ctx):
     if not ctx.message.author.voice:
