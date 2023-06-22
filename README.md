@@ -12,3 +12,9 @@ Just run!
 $ source ./venv/bin/activate
 ```
 
+## Thanks
+
+Composer: zukisuzuki 
+
+- [YouTube](https://www.youtube.com/@zukisuzukiBGM)
+- [https://zukisuzukibgm.com/](https://zukisuzukibgm.com/)
