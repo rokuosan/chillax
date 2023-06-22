@@ -42,7 +42,7 @@ ytdl = yt_dlp.YoutubeDL(ytdl_opt)
 
 
 class DataSource(discord.PCMVolumeTransformer):
-    def __init__(self, source, *, data, volume=0.01):
+    def __init__(self, source, *, data, volume=0.5):
         super().__init__(source, volume)
         self.data = data
         self.title = data.get('title')

@@ -34,8 +34,9 @@ async def play(ctx, url):
 
         async with ctx.typing():
             filename = await DataSource.from_url(url, loop=bot.loop)
-            voice_channel.play(discord.FFmpegPCMAudio(executable="ffmpeg.exe", source=filename,
-                                                      options=f"-af volume=-20dB -y"))
+            fa = discord.FFmpegPCMAudio(executable="ffmpeg.exe", source=filename)
+            audio = discord.PCMVolumeTransformer(fa, volume=0.08)
+            voice_channel.play(audio)
         await ctx.send('**Now playing:** {}'.format(filename))
     except Exception as _:
         await ctx.send("The bot is not connected to a voice channel.")
