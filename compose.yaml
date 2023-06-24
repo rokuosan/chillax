@@ -1,0 +1,7 @@
+services:
+  chillax:
+    build: .
+    volumes:
+      - .:/usr/src/myapp
+    restart: always
+    tty: true
