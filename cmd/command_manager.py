@@ -1,9 +1,8 @@
 import discord
 from discord.ext import commands
 
-from main import intents, DataSource, ffmpeg_opt
+from main import intents
 from .join import join_exec
-from .ping import ping
 from .play import play_exec
 from .quit import quit_exec
 
