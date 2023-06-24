@@ -20,5 +20,5 @@ async def leave(ctx):
 
 
 @bot.command(name='play', help='To play song')
-async def play(ctx, url):
-    await play_exec(ctx, url)
+async def play(ctx):
+    await play_exec(ctx)
