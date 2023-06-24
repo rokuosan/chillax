@@ -3,3 +3,4 @@ venv
 .env
 *.m4a
 *.webm
+__pycache__
