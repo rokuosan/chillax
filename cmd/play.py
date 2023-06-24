@@ -1,20 +1,34 @@
+import asyncio
+import time
+
 import discord.ext
-from discord import ClientException
+from discord import VoiceChannel, ClientException
+from discord.utils import get
+
+from cmd import command_manager
+
+
+def repeat(voice):
+    name = "sounds/music.mp3"
+    pcm = discord.FFmpegPCMAudio(source=name)
+    audio = discord.PCMVolumeTransformer(pcm, volume=0.08)
+
+    if not voice.is_playing:
+        time.sleep(3)
+        voice.play(audio, after=lambda e: repeat(voice))
 
 
 async def play_exec(ctx: discord.ext.commands.bot.Context):
-    try:
-        server = ctx.message.guild
-        vc = server.voice_client
-
-        async with ctx.typing():
-            fn = "sounds/music.mp3"
-            pcm = discord.FFmpegPCMAudio(source=fn)
-            audio = discord.PCMVolumeTransformer(pcm, volume=0.08)
-            vc.play(audio)
-        await ctx.send("再生を開始します")
-    except (ClientException, TypeError):
-        await ctx.send("再生に失敗しました。")
-    except Exception:
-        await ctx.send("VCに接続してからコマンドを実行してください")
-
+    voice_channel = ctx.author.voice.channel
+    if voice_channel:
+        voice_client = await voice_channel.connect()
+        try:
+            while True:
+                pcm = discord.FFmpegPCMAudio(source="sounds/music.mp3")
+                audio = discord.PCMVolumeTransformer(pcm, volume=0.08)
+                voice_client.play(audio)
+                # 再生が終了するまで待つ
+                while voice_client.is_playing():
+                    await asyncio.sleep(1)
+        except ClientException:
+            return
