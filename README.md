@@ -12,7 +12,7 @@ Provides chill and relax musics to your discord server!
 
 ### Installation
 
-> **NOTE**
+> **Note**
 > 
 > You must have a discord bot api token. 
 > If you don't have it, you can get from [Discord Developer Portal](https://discord.com/developers/applications).
