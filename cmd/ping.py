@@ -1,3 +1,6 @@
-async def ping(ctx):
-    print(type(ctx))
-    await ctx.send('pong')
+from discord.ext.commands import Context
+
+
+async def ping_exec(ctx: Context):
+    await ctx.reply("Pong!")
+
