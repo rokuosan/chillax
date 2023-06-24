@@ -19,6 +19,8 @@ if DISCORD_TOKEN is None or DISCORD_TOKEN == "":
 intents: discord.Intents = discord.Intents().all()
 client: discord.Client = discord.Client(intents=intents)
 
+SUPER_USERS = os.getenv("SUPER_USERS").split(",")
+
 
 def main():
     global DISCORD_TOKEN
