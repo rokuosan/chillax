@@ -1,9 +1,7 @@
-import asyncio
 import os
 import sys
 
 import discord
-import yt_dlp
 from dotenv import load_dotenv
 
 from cmd import command_manager
