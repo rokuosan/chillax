@@ -9,7 +9,7 @@ WORKDIR /usr/src/myapp
 COPY ./requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN chown -R ${USERNAME}:${USERNAME} .
+RUN apt update -y && apt install ffmpeg -y &&  pip install --no-cache-dir -r requirements.txt
 
 USER ${UID}
 
