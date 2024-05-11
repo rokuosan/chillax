@@ -3,6 +3,7 @@
  */
 package org.example
 
+import io.github.rokuosan.chillax.App
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 
