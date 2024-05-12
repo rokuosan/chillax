@@ -6,6 +6,10 @@ import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack
+import dev.lavalink.youtube.YoutubeAudioSourceManager
+import dev.lavalink.youtube.clients.Android
+import dev.lavalink.youtube.clients.Music
+import dev.lavalink.youtube.clients.Web
 import io.github.rokuosan.chillax.GuildTrackManagers
 import io.github.rokuosan.chillax.handler.EchoHandler
 import io.github.rokuosan.chillax.manager.GuildTrackManager
@@ -21,12 +25,13 @@ class MessageReceiveListener: EventListener {
         if (!e.isFromGuild) return
 
         val apm = DefaultAudioPlayerManager()
+        apm.registerSourceManager(YoutubeAudioSourceManager( true, Music(), Web(), Android()))
         AudioSourceManagers.registerRemoteSources(apm)
         AudioSourceManagers.registerLocalSource(apm)
 
         val cmd = e.message.contentRaw.split(" ")
         when(cmd[0].lowercase()) {
-            "!join" -> {
+            "!echo" -> {
                 val m = e.member?:return
                 val vs = m.voiceState
                 val ch = vs?.channel?:return
@@ -49,12 +54,18 @@ class MessageReceiveListener: EventListener {
 
                 am.closeAudioConnection()
             }
+            "~skip" -> {
+                val gtm = GuildTrackManagers[e.guild.idLong]?:return
+                gtm.scheduler.nextTrack()
+                e.channel.sendMessage("Skipped").queue()
+            }
             "~play" -> {
                 val gtm = GuildTrackManagers[e.guild.idLong]?:run {
                     val gtm = GuildTrackManager(apm)
                     GuildTrackManagers[e.guild.idLong] = gtm
                     gtm
                 }
+                e.guild.audioManager.sendingHandler = gtm.getSendHandler()
                 val ch = e.channel
 
                 apm.loadItemOrdered(gtm, cmd[1], object: AudioLoadResultHandler {

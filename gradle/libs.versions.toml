@@ -5,11 +5,13 @@ guava = "32.1.3-jre"
 junit-jupiter-engine = "5.10.1"
 jda = "5.0.0-beta.23"
 lavaplayer = "2.1.2"
+youtubbe-source = "1.2.0"
 logback = "1.4.12"
 
 [libraries]
 jda = { module = "net.dv8tion:JDA", version.ref = "jda" }
 lavaplayer = { module = "dev.arbjerg:lavaplayer", version.ref = "lavaplayer" }
+youtube-source = { module = "dev.lavalink.youtube:common", version.ref = "youtubbe-source" }
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter-engine" }
