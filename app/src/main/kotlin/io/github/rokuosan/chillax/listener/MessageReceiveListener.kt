@@ -3,7 +3,6 @@ package io.github.rokuosan.chillax.listener
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers
-import com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioSourceManager
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack
@@ -22,8 +21,8 @@ class MessageReceiveListener: EventListener {
         if (!e.isFromGuild) return
 
         val apm = DefaultAudioPlayerManager()
-        AudioSourceManagers.registerRemoteSources(apm);
-        AudioSourceManagers.registerLocalSource(apm);
+        AudioSourceManagers.registerRemoteSources(apm)
+        AudioSourceManagers.registerLocalSource(apm)
 
         val cmd = e.message.contentRaw.split(" ")
         when(cmd[0].lowercase()) {

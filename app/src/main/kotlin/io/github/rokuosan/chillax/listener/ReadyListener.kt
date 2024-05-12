@@ -1,9 +1,5 @@
 package io.github.rokuosan.chillax.listener
 
-import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager
-import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers
-import io.github.rokuosan.chillax.handler.AudioPlayerSendHandler
-import io.github.rokuosan.chillax.scheduler.TrackScheduler
 import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.events.session.ReadyEvent
 import net.dv8tion.jda.api.hooks.EventListener
